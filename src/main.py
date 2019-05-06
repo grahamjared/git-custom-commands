@@ -28,6 +28,7 @@ def get_valid_repository():
 
     return filepath
 
+# main
 name                = input("enter the desired custom name: ")
 filepath_script     = get_valid_python_script()
 
