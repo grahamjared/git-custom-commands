@@ -5,4 +5,4 @@ filepath_repository = input("git repo filepath, where one might find a .git fold
 
 
 name                = input("enter the desired custom name: ")
-register.command(name, filepath_script, filepath_repository)
+register.command(name, filepath_script)

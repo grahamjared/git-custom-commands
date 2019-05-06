@@ -11,14 +11,14 @@ from git import Repo
 # The python script can then run any amount of git commands or do whatever
 # it wants.
 
-def command(name, filepath_python_script, filepath_repository):
-    CONST_BATCH_SCRIPT = '!"' + sys.executable + '" "' + filepath_python_script + '"'
-    # get repo
-    repo = Repo(filepath_repository)
-    git  = repo.git
-    git.execute(['git', 'config', 'alias.' + name, CONST_BATCH_SCRIPT])
 def make_bat_script(filepath_py_script):
     return '!"' + sys.executable + '" "' + filepath_py_script + '"'
 
 def make_str_alias(name):
     return 'alias.' + name
+
+def command(name, filepath_script):
+    CONST_BATCH_SCRIPT = make_bat_script(filepath_script)
+    CONST_ALIAS_FULL   = make_str_alias(name)
+
+    Repo().git.execute(['git', 'config', '--global', CONST_ALIAS_FULL, CONST_BATCH_SCRIPT])
