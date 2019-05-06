@@ -22,3 +22,10 @@ def command(name, filepath_script):
     CONST_ALIAS_FULL   = make_str_alias(name)
 
     Repo().git.execute(['git', 'config', '--global', CONST_ALIAS_FULL, CONST_BATCH_SCRIPT])
+
+def command_local(name, filepath_script, filepath_repository):
+    CONST_BAT_SCRIPT   = make_bat_script(filepath_script)
+    CONST_ALIAS_FULL   = make_str_alias(name)
+
+    Repo(filepath_repository).git.execute(['git', 'config', CONST_ALIAS_FULL])
+
