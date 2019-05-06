@@ -3,11 +3,11 @@ from git import Repo
 
 # what we're doing in git terms:
 #
-# git config alias.git_command_name '!"<filepath_python>" "<filepath_script>"'
+# git config alias.<name> '!"<python.exe filepath>" "<script>"'
 #
 # english:
 #
-# Create a .bat script 'in place' with the alias to call a python script.
+# Create a .bat 'in place' within the alias and make it call a python script.
 # The python script can then run any amount of git commands or do whatever
 # it wants.
 
