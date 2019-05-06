@@ -33,3 +33,5 @@ name                = input("enter the desired custom name: ")
 filepath_script     = get_valid_python_script()
 
 register.command(name, filepath_script)
+
+print("command successfully registered")
