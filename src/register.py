@@ -19,3 +19,6 @@ def command(name, filepath_python_script, filepath_repository):
     git.execute(['git', 'config', 'alias.' + name, CONST_BATCH_SCRIPT])
 def make_bat_script(filepath_py_script):
     return '!"' + sys.executable + '" "' + filepath_py_script + '"'
+
+def make_str_alias(name):
+    return 'alias.' + name
