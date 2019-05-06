@@ -1,27 +1,35 @@
-import sys
-from git import Repo
+import register
+from pathlib import Path as pathlib_Path
 
-git_command_name = input("enter the desired custom name: ")
-filepath_script  = input("enter the filepath of the python script you want to call through git\n(e.g. C:/Scripts/destroy_repo.py): ")
-filepath_repo    = input("git repo filepath, where one might find a .git folder.\n(e.g. C:/repositories/myproject): ")
-filepath_python  = sys.executable
+def get_valid_python_script():
 
-# get repo
-repo = Repo(filepath_repo)
-git  = repo.git
+    while True:
+        # do (get file)
+        filepath = input("enter the filepath of the python script you want to call through git\n(e.g. C:/Scripts/destroy_repo.py): ")
+        # while (file is not real python script)
+        if (pathlib_Path(filepath).suffix != '.py' and not pathlib_Path(filepath).exists):
+            continue
+        else:
+            break
 
-# what we're doing in git terms:
-#
-# git config alias.git_command_name '!"<filepath_python>" "<filepath_script>"'
-#
-# english:
-#
-# Create a .bat script 'in place' with the alias to call a python script.
-# The python script can then run any amount of git commands or do whatever
-# it wants.
+    return filepath
 
-string_alias_name = 'alias.' + git_command_name
-string_batch_script = '!"' + filepath_python + '" "' + filepath_script + '"'
+def get_valid_repository():
 
-result = git.execute(['git', 'config', string_alias_name, string_batch_script])
-print(result)
+    while True:
+        # do (get repo filepath)
+        filepath = input("enter the filepath of a git repository, where one might find a .git folder.\n(e.g. C:/repos/myproject): ")
+        # while (setting repo fails)
+        try:
+            Repo(filepath)
+        except:
+            continue
+        break
+
+    return filepath
+
+# main
+name                = input("enter the desired custom name: ")
+filepath_script     = get_valid_python_script()
+
+register.command(name, filepath_script)
