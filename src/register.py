@@ -17,3 +17,5 @@ def command(name, filepath_python_script, filepath_repository):
     repo = Repo(filepath_repository)
     git  = repo.git
     git.execute(['git', 'config', 'alias.' + name, CONST_BATCH_SCRIPT])
+def make_bat_script(filepath_py_script):
+    return '!"' + sys.executable + '" "' + filepath_py_script + '"'
